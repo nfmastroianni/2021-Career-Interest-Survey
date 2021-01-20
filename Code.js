@@ -73,6 +73,7 @@ function doGet(e) {
   var page = HtmlService.createTemplateFromFile("index")
     .evaluate()
     .getContent();
+  HTMLoutput.addMetaTag("viewport", "width=device-width, initial-scale=1");
   HTMLoutput.append(page);
   return HTMLoutput;
 }
