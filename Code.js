@@ -1,6 +1,6 @@
 /**
  * The function below captures data submitted to a Google Form
- * @param { object } onFormSubmit event object
+ * @param { object } - onFormSubmit event object
  */
 
 function onFormSubmit(e) {
@@ -59,4 +59,30 @@ function onFormSubmit(e) {
   const tally = ss.getSheetByName("tally"); // get the target sheet named "tally"
   let range = tally.getRange(rowNumber, 5, 1, 18); // grab the range from the tally sheet to be updated
   range.setValues(rowsData); // set the tally data to the spreadsheet
+}
+
+/**
+ * The function below generates HTML output for the web portal
+ * This portal is for students to retreive their tallies.
+ * @param {object} - doGet event object
+ * @returns {object} HTMLoutput is the HTML content to be served up by the browser
+ */
+
+function doGet(e) {
+  var HTMLoutput = HtmlService.createHtmlOutput();
+  var page = HtmlService.createTemplateFromFile("index")
+    .evaluate()
+    .getContent();
+  HTMLoutput.append(page);
+  return HTMLoutput;
+}
+
+/**
+ * The function below allows for the inclusion of separate files into the HTML output
+ * Typically this includes a css.html for styles and js.html for javascript functionality
+ * @param {string} - filename is the name of the file to be included
+ * @returns {object} - HtmlOutput object
+ */
+function include(filename) {
+  return HtmlService.createHtmlOutputFromFile(filename).getContent();
 }
