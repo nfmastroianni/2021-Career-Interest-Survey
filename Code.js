@@ -55,7 +55,7 @@ function onFormSubmit(e) {
   }
   rowsData.push(rowData); // push the row data into the rowsData variable so that it is 2 dimensional
   // preparing now to commit the row to the Google Spreadsheet sheet "tally"
-  const ss = SpreadshetApp.getActive(); // get the active Google Sheet
+  const ss = SpreadsheetApp.getActive(); // get the active Google Sheet
   const tally = ss.getSheetByName("tally"); // get the target sheet named "tally"
   let range = tally.getRange(rowNumber, 5, 1, 18); // grab the range from the tally sheet to be updated
   range.setValues(rowsData); // set the tally data to the spreadsheet
